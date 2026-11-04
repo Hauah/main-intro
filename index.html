@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intro Video</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            background: black;
+            overflow: hidden;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: black;
+        }
+
+        #blackScreen {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: black;
+        }
+    </style>
+</head>
+
+<body>
+
+    <video id="intro" autoplay muted playsinline>
+        <source src="intro.mp4" type="video/mp4">
+    </video>
+
+    <div id="blackScreen"></div>
+
+    <script>
+        const video = document.getElementById("intro");
+        const blackScreen = document.getElementById("blackScreen");
+
+        video.addEventListener("ended", function () {
+
+            video.style.display = "none";
+            blackScreen.style.display = "block";
+
+            setTimeout(function () {
+                window.location.href = "https://www.ig.com";
+            }, 1000);
+
+        });
+    </script>
+
+</body>
+</html>
