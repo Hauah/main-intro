@@ -25,40 +25,38 @@
             object-fit: contain;
             background: black;
         }
+
+        #blackScreen {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: black;
+        }
     </style>
 </head>
 
 <body>
 
-    <video id="intro" autoplay muted playsinline loop>
-        <source src="intro.mp4" type="video/mp4">
+    <video id="intro" autoplay muted playsinline>
+        <source src="intro.webm" type="video/webm">
     </video>
 
+    <div id="blackScreen"></div>
+
     <script>
-        const DIARY_URL = "https://her-sketchbook.vercel.app";
+        const video = document.getElementById("intro");
+        const blackScreen = document.getElementById("blackScreen");
 
-        function checkOrientation() {
-            const isLandscape =
-                window.matchMedia("(orientation: landscape)").matches;
+        video.addEventListener("ended", function () {
 
-            if (isLandscape) {
-                window.location.replace(DIARY_URL);
-            }
-        }
+            video.style.display = "none";
+            blackScreen.style.display = "block";
 
-        // Check immediately
-        checkOrientation();
+            setTimeout(function () {
+                window.location.href = "https://her-sketchbook.vercel.app";
+            }, 1000);
 
-        // Check whenever orientation changes
-        window.addEventListener("orientationchange", checkOrientation);
-        window.addEventListener("resize", checkOrientation);
-
-        if (screen.orientation) {
-            screen.orientation.addEventListener(
-                "change",
-                checkOrientation
-            );
-        }
+        });
     </script>
 
 </body>
