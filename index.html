@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,34 +25,40 @@
             object-fit: contain;
             background: black;
         }
-
-        #blackScreen {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: black;
-        }
     </style>
 </head>
 
 <body>
 
-    <video id="intro" autoplay muted playsinline>
+    <video id="intro" autoplay muted playsinline loop>
         <source src="intro.mp4" type="video/mp4">
     </video>
 
-    <div id="blackScreen"></div>
-
     <script>
-        const video = document.getElementById("intro");
-        const blackScreen = document.getElementById("blackScreen");
+        const DIARY_URL = "https://her-sketchbook.vercel.app";
 
-        video.addEventListener("ended", function () {
+        function checkOrientation() {
+            const isLandscape =
+                window.matchMedia("(orientation: landscape)").matches;
 
-            video.style.display = "none";
-            blackScreen.style.display = "block";
+            if (isLandscape) {
+                window.location.replace(DIARY_URL);
+            }
+        }
 
-        });
+        // Check immediately
+        checkOrientation();
+
+        // Check whenever orientation changes
+        window.addEventListener("orientationchange", checkOrientation);
+        window.addEventListener("resize", checkOrientation);
+
+        if (screen.orientation) {
+            screen.orientation.addEventListener(
+                "change",
+                checkOrientation
+            );
+        }
     </script>
 
 </body>
