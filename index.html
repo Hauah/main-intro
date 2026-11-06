@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intro Video</title>
+    <title>Be Patient..</title>
 
     <style>
         * {
@@ -27,12 +27,6 @@
             background: black;
         }
 
-        #blackScreen {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: black;
-        }
     </style>
 </head>
 
@@ -46,12 +40,11 @@
 
     <script>
         const video = document.getElementById("intro");
-        const blackScreen = document.getElementById("blackScreen");
-
+    
         video.addEventListener("ended", function () {
 
             video.style.display = "none";
-            blackScreen.style.display = "block";
+           
 
             setTimeout(function () {
                 window.location.href = "https://www.ig.com";
